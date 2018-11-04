@@ -1,0 +1,47 @@
+version: '2'
+
+services:
+  node_backend:
+    build: docker/node_backend
+    links:
+      - mysql:mysql
+    ports:
+      - 4000:4000
+    volumes:
+      - ./backend:/var/www/app
+    networks:
+      app:
+        ipv4_address: "10.5.0.2"
+
+  node_frontend:
+    build: docker/node_frontend
+    links:
+      - node_backend:node_backend
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/var/www/app
+    networks:
+      app:
+        ipv4_address: "10.5.0.3"
+
+  mysql:
+    image: mysql:5.7
+    environment:
+    - MYSQL_ROOT_PASSWORD=r00tf0rmy5ql
+    - MYSQL_DATABASE=boilerplate
+    - MYSQL_USER=developer
+    - MYSQL_PASSWORD=d3v3l0p3r
+    ports:
+    - 3307:3306
+    networks:
+      app:
+        ipv4_address: "10.5.0.4"
+
+networks:
+  app:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: "10.5.0.0/16"
+        gateway: "10.5.0.1"

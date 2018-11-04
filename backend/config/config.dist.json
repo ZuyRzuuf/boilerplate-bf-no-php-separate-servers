@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "developer",
+    "password": null,
+    "database": "boilerplate",
+    "host": "10.5.0.4",
+    "port": "3306",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "tester",
+    "password": null,
+    "database": "boilerplate_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "www",
+    "password": null,
+    "database": "boilerplate",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
